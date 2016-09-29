@@ -31,7 +31,7 @@
       <button class="btn btn-default" style="margin-bottom: 10px" id="copy">Copy</button>
 
       <pre><code id="output">
-        Nothing here yet...
+        This is a tool that helps you permutate text together for Alexa intents.  Just start typing in the boxes above, you'll figure it out...
       </code></pre>
 
       <script>
@@ -61,10 +61,25 @@
             verbs.forEach(function(verb) {
               connectors.forEach(function(connector) {
                 nouns.forEach(function(noun) {
-                  if(((verbs.length > 1) && (verb.trim().length == 0)) || 
-                     ((connectors.length > 1) && (connector.trim().length == 0)) ||
-                     ((nouns.length > 1) && (noun.trim().length == 0))) {
+                  if((verb.trim().length == 0) &&
+                     (connector.trim().length == 0) &&
+                     (noun.trim().length == 0)) {
                     // do nothing
+                  } else if((noun.trim().length == 0) && 
+                            (connector.trim().length == 0)) {
+                    utterances += intentName + " " + verb + "\n";
+                  } else if((verb.trim().length == 0) && 
+                            (connector.trim().length == 0)) {
+                    utterances += intentName + " " + noun + "\n";
+                  } else if((verb.trim().length == 0) && 
+                            (noun.trim().length == 0)) {
+                    utterances += intentName + " " + connector + "\n";
+                  } else if((verb.trim().length == 0)) {
+                    utterances += intentName + " " + connector + " " + noun + "\n";
+                  } else if((connector.trim().length == 0)) {
+                    utterances += intentName + " " + verb + " " + noun + "\n";
+                  } else if((noun.trim().length == 0)) {
+                    utterances += intentName + " " + verb + " " + connector + "\n";
                   } else {
                     utterances += intentName + " " + verb + " " + connector + " " + noun + "\n";
                   }
