@@ -37,7 +37,7 @@
       <script>
         var params = $.deparam.querystring();
         if(params.intentName) $("#intentName").val(params.intentName);
-        if(params.verbs) $("#verbs").val(params.nouns.join('\n'));
+        if(params.nouns) $("#verbs").val(params.nouns.join('\n'));
         if(params.connectors) $("#connectors").val(params.connectors.join('\n'));
         if(params.verbs) $("#nouns").val(params.verbs.join('\n'));
 
