@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</head>
+	<body>
+    <div class="container">
+      <h1>Permutator</h1>
+
+      <div class="row" style="margin-bottom: 25px">
+        <div class="col-md-3">
+	        <input type="text" class="form-control" id="intentName" placeholder="intent">
+        </div>
+        <div class="col-md-3">
+	        <textarea class="form-control" id="verbs" placeholder="something" rows="5"></textarea>
+        </div>
+        <div class="col-md-3">
+	        <textarea class="form-control" id="connectors" placeholder="something" rows="5"></textarea>
+        </div>
+        <div class="col-md-3">
+  		    <textarea class="form-control" id="nouns" placeholder="something" rows="5"></textarea>
+        </div>
+      </div>
+
+      <pre><code id="output">
+        Nothing here yet...
+      </code></pre>
+
+      <script>
+        $(".form-control").on('change keyup paste click', function() {
+          var utterances = '';
+
+          var intentName = $("#intentName").val();
+          var verbs = $("#verbs").val().split('\n');
+          var connectors = $("#connectors").val().split('\n');
+          var nouns = $("#nouns").val().split('\n');
+          verbs.forEach(function(verb) {
+            connectors.forEach(function(connector) {
+              nouns.forEach(function(noun) {
+                if(((verbs.length > 1) && (verb.trim().length == 0)) || 
+                   ((connectors.length > 1) && (connector.trim().length == 0)) ||
+                   ((nouns.length > 1) && (noun.trim().length == 0))) {
+                  // do nothing
+                } else {
+                  utterances += intentName + " " + verb + " " + connector + " " + noun + "\n";
+                }
+              });
+            });
+          });
+
+          var json = {};
+          json.intentName = intentName;
+          json.verbs = verbs;
+          json.connectors = connectors;
+          json.nouns = nouns;
+
+          var header = '';
+          header += "# permutator json = " + JSON.stringify(json) + "\n";
+
+          $("#output").text(header + utterances);
+        });
+      </script>
+	</body>
+</html>
