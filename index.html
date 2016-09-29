@@ -28,17 +28,27 @@
         </div>
       </div>
 
+      <button class="btn btn-default" style="margin-bottom: 10px" id="copy">Copy</button>
+
       <pre><code id="output">
         Nothing here yet...
       </code></pre>
 
       <script>
         var params = $.deparam.querystring();
-        console.log(JSON.stringify(params, null, 2));
         if(params.intentName) $("#intentName").val(params.intentName);
         if(params.verbs) $("#verbs").val(params.nouns.join('\n'));
         if(params.connectors) $("#connectors").val(params.connectors.join('\n'));
         if(params.verbs) $("#nouns").val(params.verbs.join('\n'));
+
+        $("#copy").click(function() {
+          console.log("here");
+          var $temp = $("<textarea>");
+          $("body").append($temp);
+          $temp.val($("#output").text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+        });
 
         $(".form-control").on('change keyup paste click', function() {
           var utterances = '';
