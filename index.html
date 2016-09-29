@@ -35,10 +35,10 @@
       <script>
         var params = $.deparam.querystring();
         console.log(JSON.stringify(params, null, 2));
-        $("#intentName").val(params.intentName);
-        $("#verbs").val(params.nouns.join('\n'));
-        $("#connectors").val(params.connectors.join('\n'));
-        $("#nouns").val(params.verbs.join('\n'));
+        if(params.intentName) $("#intentName").val(params.intentName);
+        if(params.verbs) $("#verbs").val(params.nouns.join('\n'));
+        if(params.connectors) $("#connectors").val(params.connectors.join('\n'));
+        if(params.verbs) $("#nouns").val(params.verbs.join('\n'));
 
         $(".form-control").on('change keyup paste click', function() {
           var utterances = '';
