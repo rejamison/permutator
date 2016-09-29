@@ -37,19 +37,21 @@
           var verbs = $("#verbs").val().split('\n');
           var connectors = $("#connectors").val().split('\n');
           var nouns = $("#nouns").val().split('\n');
-          verbs.forEach(function(verb) {
-            connectors.forEach(function(connector) {
-              nouns.forEach(function(noun) {
-                if(((verbs.length > 1) && (verb.trim().length == 0)) || 
-                   ((connectors.length > 1) && (connector.trim().length == 0)) ||
-                   ((nouns.length > 1) && (noun.trim().length == 0))) {
-                  // do nothing
-                } else {
-                  utterances += intentName + " " + verb + " " + connector + " " + noun + "\n";
-                }
+          if(intentName.trim().length > 0) {
+            verbs.forEach(function(verb) {
+              connectors.forEach(function(connector) {
+                nouns.forEach(function(noun) {
+                  if(((verbs.length > 1) && (verb.trim().length == 0)) || 
+                     ((connectors.length > 1) && (connector.trim().length == 0)) ||
+                     ((nouns.length > 1) && (noun.trim().length == 0))) {
+                    // do nothing
+                  } else {
+                    utterances += intentName + " " + verb + " " + connector + " " + noun + "\n";
+                  }
+                });
               });
             });
-          });
+          }
 
           var json = {};
           json.intentName = intentName;
