@@ -4,6 +4,7 @@ A simple website for permutating strings.  Useful for creating utterance variati
 https://rejamison.github.io/permutator/
 
 <img width="1155" alt="screen shot 2016-09-30 at 9 09 12 am" src="https://cloud.githubusercontent.com/assets/1970771/18998455/9acd58b0-86ed-11e6-84bc-2d4fc839c3cf.png">
+https://rejamison.github.io/permutator/?intentName=TestIntent&verbs%5B%5D=&verbs%5B%5D=this&verbs%5B%5D=permutator&verbs%5B%5D=this+website&connectors%5B%5D=is+a&connectors%5B%5D=is+still+a&nouns%5B%5D=test&nouns%5B%5D=work+in+progress&nouns%5B%5D=experiment&nouns%5B%5D=useful+tool
 
 # Usage
 
